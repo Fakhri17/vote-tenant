@@ -1,7 +1,7 @@
 <template>
   <div class="container py-5 vote-page">
-    <div class="row g-4">
-      <div class="col-lg-7">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
         <div class="card shadow h-100">
           <div class="card-body p-4">
             <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-4">
@@ -41,122 +41,51 @@
               sini.
             </div>
 
-            <div v-if="!currentUser" class="mb-4 text-center">
-              <h5 class="mb-3">Masuk untuk memulai voting</h5>
-              <p class="text-muted small mb-4">
-                Kami hanya menyimpan nama, email, dan tenant pilihanmu. Voting hanya bisa dilakukan 1 kali.
-              </p>
-              <div class="d-flex justify-content-center">
-                <GoogleLogin :callback="handleGoogleCredential" type="standard" shape="rectangular" theme="outline"
-                  size="large" text="signin_with" />
-              </div>
-            </div>
-
-            <div v-else class="mb-4">
-              <div class="alert alert-success" role="alert">
-                <strong>Login sebagai:</strong> {{ currentUser.name }} ({{ currentUser.email }})
-              </div>
-            </div>
-
-            <div class="progress-card mb-4">
-              <div v-for="step in progressSteps" :key="step.id" class="progress-step"
-                :class="{ completed: step.completed, active: step.active }">
-                <div class="step-indicator">
-                  <span>{{ step.id }}</span>
-                </div>
-                <div>
-                  <p class="mb-0 fw-semibold">{{ step.title }}</p>
-                  <small class="text-muted">{{ step.description }}</small>
+            <template v-if="selectedTenant">
+              <div v-if="!currentUser" class="mb-4 text-center">
+                <h5 class="mb-3">Masuk untuk memulai voting</h5>
+                <p class="text-muted small mb-4">
+                  Kami hanya menyimpan nama, email, dan tenant pilihanmu. Voting hanya bisa dilakukan 1 kali.
+                </p>
+                <div class="d-flex justify-content-center">
+                  <GoogleLogin :callback="handleGoogleCredential" type="standard" shape="rectangular" theme="outline"
+                    size="large" text="signin_with" />
                 </div>
               </div>
-            </div>
 
-            <div class="d-grid gap-2 mb-3">
-              <button type="button" class="btn btn-primary btn-lg"
-                :disabled="!currentUser || !selectedTenant || isVoting || voteSuccess" @click="handleVote">
-                <span v-if="isVoting" class="spinner-border spinner-border-sm me-2" role="status"
-                  aria-hidden="true"></span>
-                {{ isVoting ? 'Sedang memproses...' : 'Vote Tenant Ini' }}
-              </button>
-            </div>
-
-            <div v-if="resultMessage" class="alert" :class="resultMessageClass" role="alert">
-              {{ resultMessage }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-5">
-        <div class="info-panel mb-4">
-          <div class="d-flex justify-content-between align-items-start mb-3">
-            <div>
-              <p class="section-label text-uppercase mb-1">
-                {{ isPreviewingTenant ? 'Preview tenant' : 'Tenant dari QR' }}
-              </p>
-              <h4 class="mb-0">
-                {{ activeInfoTenant?.nama_tenant || 'Belum ada tenant' }}
-              </h4>
-              <small v-if="activeInfoTenant" class="text-muted">ID: {{ activeInfoTenant.tenant_id }}</small>
-            </div>
-            <span v-if="activeInfoTenant" class="tenant-chip small">
-              Booth <strong>{{ activeInfoTenant.booth || 'TBA' }}</strong>
-            </span>
-          </div>
-
-          <p v-if="!activeInfoTenant" class="text-muted mb-0">
-            Gunakan pencarian di bawah untuk melihat profil tenant dan booth sebelum voting.
-          </p>
-
-          <div v-else class="tenant-highlights">
-            <div class="highlight">
-              <span class="highlight-label">Status voting</span>
-              <span class="highlight-value">{{ voteSuccess ? 'Sudah tercatat' : 'Belum voting' }}</span>
-            </div>
-            <div class="highlight">
-              <span class="highlight-label">Booth</span>
-              <span class="highlight-value">{{ activeInfoTenant.booth || 'Segera diumumkan' }}</span>
-            </div>
-            <div class="highlight">
-              <span class="highlight-label">QR Code</span>
-              <span class="highlight-value">{{ activeInfoTenant.tenant_id }}</span>
-            </div>
-          </div>
-
-          <button v-if="isPreviewingTenant" type="button" class="btn btn-outline-secondary w-100 mt-3"
-            @click="resetPreview">
-            Kembali ke tenant dari QR
-          </button>
-        </div>
-
-        <div class="info-panel mb-4">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-              <p class="section-label text-uppercase mb-1">Cari tenant lain</p>
-              <h5 class="mb-0">Eksplor Booth</h5>
-            </div>
-            <span class="text-muted small">{{ filteredTenants.length }} ditampilkan</span>
-          </div>
-          <input v-model="tenantSearch" type="search" class="form-control form-control-lg mb-3"
-            placeholder="Cari nama tenant atau booth (mis. PAWTRAIT, T001)">
-          <div class="tenant-list">
-            <button v-for="tenant in filteredTenants" :key="tenant.tenant_id" type="button"
-              class="tenant-list__item btn btn-light w-100 text-start mb-2"
-              :class="{ active: tenant.tenant_id === activeInfoTenant?.tenant_id }"
-              @click="handleTenantPreview(tenant.tenant_id)">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <div>
-                  <p class="mb-0 fw-semibold">{{ tenant.nama_tenant }}</p>
-                  <small class="text-muted">ID {{ tenant.tenant_id }} · Booth {{ tenant.booth || 'TBA' }}</small>
+              <div v-else class="mb-4">
+                <div class="alert alert-success" role="alert">
+                  <strong>Login sebagai:</strong> {{ currentUser.name }} ({{ currentUser.email }})
                 </div>
-                <span class="badge text-bg-primary">Lihat</span>
               </div>
-            </button>
+
+              <div class="progress-card mb-4">
+                <div v-for="step in progressSteps" :key="step.id" class="progress-step"
+                  :class="{ completed: step.completed, active: step.active }">
+                  <div class="step-indicator">
+                    <span>{{ step.id }}</span>
+                  </div>
+                  <div>
+                    <p class="mb-0 fw-semibold">{{ step.title }}</p>
+                    <small class="text-muted">{{ step.description }}</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-grid gap-2 mb-3">
+                <button type="button" class="btn btn-primary btn-lg"
+                  :disabled="!currentUser || !selectedTenant || isVoting || voteSuccess" @click="handleVote">
+                  <span v-if="isVoting" class="spinner-border spinner-border-sm me-2" role="status"
+                    aria-hidden="true"></span>
+                  {{ isVoting ? 'Sedang memproses...' : 'Vote Tenant Ini' }}
+                </button>
+              </div>
+
+              <div v-if="resultMessage" class="alert" :class="resultMessageClass" role="alert">
+                {{ resultMessage }}
+              </div>
+            </template>
           </div>
-          <small class="text-muted d-block mt-2">
-            Data tenant bersumber langsung dari `dataset-tenant.csv`. Klik salah satu untuk melihat info tanpa
-            mengganti target voting.
-          </small>
         </div>
       </div>
     </div>
@@ -175,8 +104,6 @@ const currentUser = ref(null)
 const resultMessage = ref('')
 const isVoting = ref(false)
 const voteSuccess = ref(false)
-const tenantSearch = ref('')
-const previewTenantId = ref(null)
 
 const tenantDataset = parseTenantCsv(tenantsCsv)
 
@@ -194,44 +121,7 @@ const selectedTenant = computed(() => {
   )
 })
 
-watch(
-  () => tenantId.value,
-  () => {
-    previewTenantId.value = null
-    tenantSearch.value = selectedTenant.value?.nama_tenant || ''
-  },
-  { immediate: true }
-)
-
 const tenantNotFound = computed(() => !!tenantId.value && !selectedTenant.value)
-
-const activeInfoTenant = computed(() => {
-  if (previewTenantId.value) {
-    return tenantDataset.find((tenant) => tenant.tenant_id === previewTenantId.value) || null
-  }
-  return selectedTenant.value || null
-})
-
-const isPreviewingTenant = computed(
-  () => !!previewTenantId.value && previewTenantId.value !== selectedTenant.value?.tenant_id
-)
-
-const filteredTenants = computed(() => {
-  const term = tenantSearch.value.trim().toLowerCase()
-  if (!term) {
-    return tenantDataset.slice(0, 6)
-  }
-
-  return tenantDataset
-    .filter((tenant) => {
-      return (
-        tenant.tenant_id.toLowerCase().includes(term) ||
-        tenant.nama_tenant.toLowerCase().includes(term) ||
-        (tenant.booth || '').toLowerCase().includes(term)
-      )
-    })
-    .slice(0, 6)
-})
 
 const resultMessageClass = computed(() => {
   if (resultMessage.value.includes('berhasil')) {
@@ -348,14 +238,6 @@ async function handleVote() {
   } finally {
     isVoting.value = false
   }
-}
-
-function handleTenantPreview(id) {
-  previewTenantId.value = id
-}
-
-function resetPreview() {
-  previewTenantId.value = null
 }
 
 function parseTenantCsv(rawCsv) {
@@ -510,57 +392,6 @@ function parseTenantCsv(rawCsv) {
   align-items: center;
   justify-content: center;
   font-weight: 600;
-}
-
-.info-panel {
-  border: 1px solid #eef1f7;
-  border-radius: 16px;
-  padding: 1.5rem;
-  background: #fff;
-  box-shadow: 0 1.25rem 1.5rem rgba(15, 23, 42, 0.05);
-}
-
-.tenant-highlights {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 0.75rem;
-}
-
-.highlight {
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.highlight-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: #6c757d;
-  letter-spacing: 0.06em;
-}
-
-.highlight-value {
-  font-weight: 600;
-}
-
-.tenant-list__item {
-  border-radius: 12px;
-  border: 1px solid transparent;
-  transition: all 0.25s ease;
-  padding: 0.85rem 1rem;
-}
-
-.tenant-list__item.active {
-  border-color: #0d6efd;
-  background: rgba(13, 110, 253, 0.05);
-}
-
-.tenant-list__item:hover {
-  border-color: rgba(13, 110, 253, 0.5);
-  transform: translateY(-1px);
 }
 
 .spinner-border-sm {
