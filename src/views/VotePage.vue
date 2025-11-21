@@ -114,6 +114,16 @@ watch(
   }
 )
 
+watch(
+  () => tenantId.value,
+  () => {
+    if (!tenantId.value) {
+      resultMessage.value = ''
+    }
+    voteSuccess.value = false
+  }
+)
+
 const selectedTenant = computed(() => {
   if (!tenantId.value) return null
   return tenantDataset.find(
