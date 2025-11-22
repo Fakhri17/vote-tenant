@@ -1,5 +1,17 @@
 <template>
   <div class="generator-page container py-5">
+    <!-- Spinner Overlay -->
+    <Teleport to="body">
+      <div v-if="isGenerating" class="spinner-overlay">
+        <div class="spinner-container">
+          <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-3 mb-0 fw-semibold">Sedang memproses generate booth...</p>
+        </div>
+      </div>
+    </Teleport>
+
     <div class="mb-4">
       <h1 class="fw-bold mb-2">Generator Booth & QR</h1>
       <p class="text-muted mb-0">
@@ -41,10 +53,10 @@
             <span v-if="isGenerating" class="spinner-border spinner-border-sm me-2" role="status" />
             {{ isGenerating ? 'Sedang memproses...' : 'Generate Booth & QR' }}
           </button>
-          <button class="btn btn-outline-secondary" :disabled="!assignments.length" @click="downloadCsv">
+          <button class="btn btn-secondary" :disabled="!assignments.length" @click="downloadCsv">
             Unduh CSV terbaru
           </button>
-          <button class="btn btn-outline-secondary" :disabled="!assignments.length" @click="downloadAllQr">
+          <button class="btn btn-secondary" :disabled="!assignments.length" @click="downloadAllQr">
             Unduh semua QR (.zip)
           </button>
           <span v-if="generatedAt" class="text-muted small">
@@ -95,7 +107,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import QRCode from 'qrcode'
 import tenantsCsv from '../../dataset-tenant.csv?raw'
 import { parseTenantCsv } from '../utils/tenantCsv'
@@ -127,6 +139,12 @@ const filteredAssignments = computed(() => {
 async function generateAssignments() {
   isGenerating.value = true
   assignments.value = []
+
+  // Pastikan DOM terupdate dulu sebelum memulai proses
+  await nextTick()
+
+  // Tambahkan delay kecil untuk memastikan spinner terlihat
+  await new Promise(resolve => setTimeout(resolve, 100))
 
   try {
     const datasetCopy = [...tenantDataset]
@@ -222,6 +240,36 @@ function csvEscape(value) {
 <style scoped>
 .generator-page {
   min-height: 100vh;
+  position: relative;
+}
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(2px);
+}
+
+.spinner-container {
+  background: white;
+  padding: 2.5rem 3.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  min-width: 280px;
+}
+
+.spinner-container .spinner-border {
+  border-width: 4px;
 }
 
 .qr-preview {
