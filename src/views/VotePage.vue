@@ -401,6 +401,8 @@ async function handleVote() {
 .progress-step.active .step-indicator {
   border-color: #0d6efd;
   color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.1);
+  font-weight: 700;
 }
 
 .step-indicator {
@@ -412,6 +414,8 @@ async function handleVote() {
   align-items: center;
   justify-content: center;
   font-weight: 600;
+  color: #6c757d;
+  background-color: #fff;
 }
 
 .spinner-border-sm {
