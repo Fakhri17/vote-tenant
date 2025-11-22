@@ -85,6 +85,33 @@
                 {{ resultMessage }}
               </div>
             </template>
+
+            <!-- Informasi Form Alternatif -->
+            <div class="alert alert-warning border-warning mt-4 mb-0 alternative-form-info" role="alert">
+              <div class="d-flex align-items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                  class="bi bi-exclamation-triangle-fill mt-1" viewBox="0 0 16 16">
+                  <path
+                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                </svg>
+                <div class="flex-grow-1">
+                  <strong class="d-block mb-2">Mengalami kendala?</strong>
+                  <p class="mb-2">Jika terjadi kendala saat voting melalui QR code, Anda dapat melakukan voting melalui
+                    form alternatif berikut:</p>
+                  <a href="https://forms.gle/RAKLzF8nMU36fb5s8" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-warning btn-sm fw-semibold">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-box-arrow-up-right me-1" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                      <path fill-rule="evenodd"
+                        d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                    </svg>
+                    Buka Form Voting Alternatif
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -357,10 +384,56 @@ async function handleVote() {
   height: 1rem;
 }
 
+.alternative-form-info {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.15);
+}
+
+.alternative-form-info strong {
+  color: #856404;
+  font-size: 1.1rem;
+}
+
+.alternative-form-info p {
+  color: #856404;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.alternative-form-info .btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #000;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.2s;
+}
+
+.alternative-form-info .btn-warning:hover {
+  background-color: #ffca2c;
+  border-color: #ffca2c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+}
+
+.alternative-form-info svg {
+  flex-shrink: 0;
+}
+
 @media (max-width: 991px) {
   .tenant-summary__content {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .alternative-form-info {
+    font-size: 0.9rem;
+  }
+
+  .alternative-form-info .btn-warning {
+    width: 100%;
+    justify-content: center;
   }
 }
 </style>
