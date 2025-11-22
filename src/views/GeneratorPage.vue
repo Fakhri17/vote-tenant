@@ -73,7 +73,7 @@
           <input v-model="searchTerm" type="search" class="form-control w-auto" placeholder="Cari tenant / booth" />
         </div>
         <div class="table-responsive">
-          <table class="table align-middle">
+          <table class="table align-middle table-enhanced">
             <thead>
               <tr>
                 <th>Tenant ID</th>
@@ -85,14 +85,14 @@
             </thead>
             <tbody>
               <tr v-for="tenant in filteredAssignments" :key="tenant.tenant_id">
-                <td><code>{{ tenant.tenant_id }}</code></td>
-                <td>{{ tenant.nama_tenant }}</td>
-                <td><span class="badge text-bg-primary">{{ tenant.booth }}</span></td>
+                <td class="tenant-id-cell"><code>{{ tenant.tenant_id }}</code></td>
+                <td class="tenant-name-cell">{{ tenant.nama_tenant }}</td>
+                <td class="booth-cell"><span class="badge text-bg-primary booth-badge">{{ tenant.booth }}</span></td>
                 <td>
                   <img :src="tenant.qrDataUrl" :alt="`QR ${tenant.tenant_id}`" class="qr-preview" />
                 </td>
                 <td>
-                  <a :href="tenant.qrDataUrl" class="btn btn-sm btn-outline-primary"
+                  <a :href="tenant.qrDataUrl" class="btn btn-outline-primary"
                     :download="`${tenant.tenant_id}-${tenant.booth}.png`">
                     Download QR
                   </a>
@@ -280,5 +280,50 @@ function csvEscape(value) {
   border-radius: 8px;
   background: #fff;
   padding: 4px;
+}
+
+.table-enhanced {
+  font-size: 1rem;
+}
+
+.table-enhanced thead th {
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 1rem 0.75rem;
+  background-color: #f8f9fa;
+}
+
+.table-enhanced tbody td {
+  padding: 1rem 0.75rem;
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
+
+.tenant-id-cell code {
+  font-size: 1.1rem;
+  padding: 0.4rem 0.6rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.tenant-name-cell {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.booth-cell {
+  text-align: center;
+}
+
+.booth-badge {
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 0.6rem 1rem;
+  letter-spacing: 0.5px;
+  min-width: 80px;
+  display: inline-block;
+  background-color: #0d6efd !important;
+  color: white !important;
 }
 </style>
