@@ -54,8 +54,21 @@
               </div>
 
               <div v-else class="mb-4">
-                <div class="alert alert-success" role="alert">
-                  <strong>Login sebagai:</strong> {{ currentUser.name }} ({{ currentUser.email }})
+                <div class="alert alert-success d-flex justify-content-between align-items-center flex-wrap gap-2"
+                  role="alert">
+                  <div>
+                    <strong>Login sebagai:</strong> {{ currentUser.name }} ({{ currentUser.email }})
+                  </div>
+                  <button type="button" class="btn btn-sm btn-outline-dark logout-btn" @click="handleLogout">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-box-arrow-right me-1" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                      <path fill-rule="evenodd"
+                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                    </svg>
+                    Logout
+                  </button>
                 </div>
               </div>
 
@@ -120,7 +133,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { GoogleLogin, decodeCredential } from 'vue3-google-login'
 import tenantsCsv from '../../dataset-tenant.csv?raw'
@@ -134,6 +147,19 @@ const isVoting = ref(false)
 const voteSuccess = ref(false)
 
 const tenantDataset = parseTenantCsv(tenantsCsv)
+
+// Load user dari localStorage saat component mount
+onMounted(() => {
+  const savedUser = localStorage.getItem('voteUser')
+  if (savedUser) {
+    try {
+      currentUser.value = JSON.parse(savedUser)
+    } catch (error) {
+      console.error('Gagal memuat data user:', error)
+      localStorage.removeItem('voteUser')
+    }
+  }
+})
 
 watch(
   () => route.query.tenant,
@@ -212,10 +238,19 @@ function handleGoogleCredential(response) {
       email: payload.email,
       name: payload.name || payload.email?.split('@')[0] || 'Pengguna'
     }
+    // Simpan user ke localStorage
+    localStorage.setItem('voteUser', JSON.stringify(currentUser.value))
     resultMessage.value = ''
   } else {
     resultMessage.value = 'Gagal memproses login. Silakan coba lagi.'
   }
+}
+
+function handleLogout() {
+  currentUser.value = null
+  localStorage.removeItem('voteUser')
+  resultMessage.value = ''
+  voteSuccess.value = false
 }
 
 async function handleVote() {
@@ -382,6 +417,22 @@ async function handleVote() {
 .spinner-border-sm {
   width: 1rem;
   height: 1rem;
+}
+
+.logout-btn {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: #212529;
+  color: #212529;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #212529;
+  border-color: #212529;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .alternative-form-info {
