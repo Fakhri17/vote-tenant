@@ -158,12 +158,18 @@ async function generateAssignments() {
     for (let i = 0; i < datasetCopy.length; i += 1) {
       const boothNumber = String(startNumber.value + i).padStart(boothDigits.value, '0')
       const boothCode = `${boothPrefix.value}${boothNumber}`
+
+      // Generate tenant_id baru sesuai urutan booth (T001, T002, dst)
+      const tenantIdNumber = String(startNumber.value + i).padStart(boothDigits.value, '0')
+      const newTenantId = `T${tenantIdNumber}`
+
       const tenant = datasetCopy[i]
-      const qrUrl = `${baseUrl.value}?tenant=${tenant.tenant_id}`
+      const qrUrl = `${baseUrl.value}?tenant=${newTenantId}`
       const qrDataUrl = await QRCode.toDataURL(qrUrl, { width: 256, margin: 1 })
 
       results.push({
         ...tenant,
+        tenant_id: newTenantId, // Override dengan tenant_id baru
         booth: boothCode,
         qrUrl,
         qrDataUrl

@@ -1,78 +1,78 @@
-tenant_id,nama_tenant,booth
-T001,PAWTRAIT,
-T002,NETASEEC,
-T003,CHARMÉ NAILS,
-T004,NEXTIZEN,
-T005,SOKSY,
-T006,CELPUFF,
-T007,WEBTRIC,
-T008,MONARIZE,
-T009,LUMERLICIOUS,
-T010,NGEPANG,
-T011,KIYOWO KLICK,
-T012,LILIT&BUCKET,
-T013,KOMOREBI,
-T014,MIXOLOGY,
-T015,SENJA DI JIWA,
-T016,7 BEANS COFFE,
-T017,GYOZANYOO,
-T018,TERRASCENT,
-T019,TECHOME,
-T020,WEEBBY,
-T021,CHARMETTE,
-T022,KATZE CORNER,
-T023,MAGIC WATER,
-T024,SUEGER POLL,
-T025,MYSTICUTIE,
-T026,BLOOMIFY,
-T027,LASTED MEMORY (LAMORY),
-T028,SHOESNEAKCARE,
-T029,PANGSIP,
-T030,EVAKUASI KOPI,
-T031,TOASTERIA,
-T032,SANTEA,
-T033,CHILLMATE,
-T034,FLIKY.ID,
-T035,SERENIQUE,
-T036,LUNYU- LUMPIA UBI UNGU,
-T037,PRINTKOS,
-T038,LENS.STUDIO,
-T039,BEE.BITES,
-T040,PAWCLAY CREATION,
-T041,NASI BAKAR AJBS,
-T042,MIXCHIPS,
-T043,SNACKIN,
-T044,DRIPSOLE.ID,
-T045,NACHOSAURUS,
-T046,RECAP,
-T047,LAPERWICH,
-T048,CIKI-NI,
-T049,YASSRENG,
-T050,TERRA SNACK,
-T051,SIP & BITE (SEMOGA BERKAH GROUP),
-T052,PT.DELICIOUS GROUP,
-T053,LUVBITE,
-T054,CUSTOMEZONE,
-T055,CUKIBECHUGGIE,
-T056,BANANA MELTZ,
-T057,YAKIKU!,
-T058,CLEAN.IT,
-T059,SCIENTRIX PERFUME,
-T060,YUMMY.SIX,
-T061,KUKUSAURUS,
-T062,DR GRIZZ CLEAN,
-T063,LUBERINN,
-T064,EATWELL,
-T065,TAMARÉ,
-T066,"JEDA, COFFE",
-T067,NAWASENA,
-T068,KEYLIC,
-T069,NATURELICIOUS.CO,
-T070,THE BOX OF SECRET,
-T071,BAKUNGOPI,
-T072,CANDLECO.ID,
-T073,BANANA CAMPUS,
-T074,MACLAB,
-T075,MOST DE VIVRE,
-T076,SCOOPAHOLIC,
-T077,BIND!,
+tenant_id,nama_tenant,booth,qr_url
+T001,BEE.BITES,B001,http://localhost:5173/vote?tenant=T001
+T002,KATZE CORNER,B002,http://localhost:5173/vote?tenant=T002
+T003,SCOOPAHOLIC,B003,http://localhost:5173/vote?tenant=T003
+T004,GYOZANYOO,B004,http://localhost:5173/vote?tenant=T004
+T005,BANANA MELTZ,B005,http://localhost:5173/vote?tenant=T005
+T006,CHILLMATE,B006,http://localhost:5173/vote?tenant=T006
+T007,LILIT&BUCKET,B007,http://localhost:5173/vote?tenant=T007
+T008,NASI BAKAR AJBS,B008,http://localhost:5173/vote?tenant=T008
+T009,LENS.STUDIO,B009,http://localhost:5173/vote?tenant=T009
+T010,SHOESNEAKCARE,B010,http://localhost:5173/vote?tenant=T010
+T011,MIXOLOGY,B011,http://localhost:5173/vote?tenant=T011
+T012,SANTEA,B012,http://localhost:5173/vote?tenant=T012
+T013,EATWELL,B013,http://localhost:5173/vote?tenant=T013
+T014,YUMMY.SIX,B014,http://localhost:5173/vote?tenant=T014
+T015,SENJA DI JIWA,B015,http://localhost:5173/vote?tenant=T015
+T016,PAWTRAIT,B016,http://localhost:5173/vote?tenant=T016
+T017,CHARMÉ NAILS,B017,http://localhost:5173/vote?tenant=T017
+T018,CUKIBECHUGGIE,B018,http://localhost:5173/vote?tenant=T018
+T019,TAMARÉ,B019,http://localhost:5173/vote?tenant=T019
+T020,CLEAN.IT,B020,http://localhost:5173/vote?tenant=T020
+T021,SUEGER POLL,B021,http://localhost:5173/vote?tenant=T021
+T022,WEEBBY,B022,http://localhost:5173/vote?tenant=T022
+T023,LUMERLICIOUS,B023,http://localhost:5173/vote?tenant=T023
+T024,TECHOME,B024,http://localhost:5173/vote?tenant=T024
+T025,PRINTKOS,B025,http://localhost:5173/vote?tenant=T025
+T026,MOST DE VIVRE,B026,http://localhost:5173/vote?tenant=T026
+T027,RECAP,B027,http://localhost:5173/vote?tenant=T027
+T028,FLIKY.ID,B028,http://localhost:5173/vote?tenant=T028
+T029,LUVBITE,B029,http://localhost:5173/vote?tenant=T029
+T030,SERENIQUE,B030,http://localhost:5173/vote?tenant=T030
+T031,NAWASENA,B031,http://localhost:5173/vote?tenant=T031
+T032,KEYLIC,B032,http://localhost:5173/vote?tenant=T032
+T033,LUNYU- LUMPIA UBI UNGU,B033,http://localhost:5173/vote?tenant=T033
+T034,BLOOMIFY,B034,http://localhost:5173/vote?tenant=T034
+T035,NGEPANG,B035,http://localhost:5173/vote?tenant=T035
+T036,SNACKIN,B036,http://localhost:5173/vote?tenant=T036
+T037,KIYOWO KLICK,B037,http://localhost:5173/vote?tenant=T037
+T038,CHARMETTE,B038,http://localhost:5173/vote?tenant=T038
+T039,"JEDA, COFFE",B039,http://localhost:5173/vote?tenant=T039
+T040,CELPUFF,B040,http://localhost:5173/vote?tenant=T040
+T041,KUKUSAURUS,B041,http://localhost:5173/vote?tenant=T041
+T042,MYSTICUTIE,B042,http://localhost:5173/vote?tenant=T042
+T043,BAKUNGOPI,B043,http://localhost:5173/vote?tenant=T043
+T044,LAPERWICH,B044,http://localhost:5173/vote?tenant=T044
+T045,CANDLECO.ID,B045,http://localhost:5173/vote?tenant=T045
+T046,NEXTIZEN,B046,http://localhost:5173/vote?tenant=T046
+T047,YAKIKU!,B047,http://localhost:5173/vote?tenant=T047
+T048,BIND!,B048,http://localhost:5173/vote?tenant=T048
+T049,MONARIZE,B049,http://localhost:5173/vote?tenant=T049
+T050,MAGIC WATER,B050,http://localhost:5173/vote?tenant=T050
+T051,LUBERINN,B051,http://localhost:5173/vote?tenant=T051
+T052,TERRASCENT,B052,http://localhost:5173/vote?tenant=T052
+T053,MACLAB,B053,http://localhost:5173/vote?tenant=T053
+T054,PT.DELICIOUS GROUP,B054,http://localhost:5173/vote?tenant=T054
+T055,PANGSIP,B055,http://localhost:5173/vote?tenant=T055
+T056,DRIPSOLE.ID,B056,http://localhost:5173/vote?tenant=T056
+T057,SCIENTRIX PERFUME,B057,http://localhost:5173/vote?tenant=T057
+T058,PAWCLAY CREATION,B058,http://localhost:5173/vote?tenant=T058
+T059,BANANA CAMPUS,B059,http://localhost:5173/vote?tenant=T059
+T060,WEBTRIC,B060,http://localhost:5173/vote?tenant=T060
+T061,SIP & BITE (SEMOGA BERKAH GROUP),B061,http://localhost:5173/vote?tenant=T061
+T062,TOASTERIA,B062,http://localhost:5173/vote?tenant=T062
+T063,MIXCHIPS,B063,http://localhost:5173/vote?tenant=T063
+T064,7 BEANS COFFE,B064,http://localhost:5173/vote?tenant=T064
+T065,YASSRENG,B065,http://localhost:5173/vote?tenant=T065
+T066,EVAKUASI KOPI,B066,http://localhost:5173/vote?tenant=T066
+T067,CUSTOMEZONE,B067,http://localhost:5173/vote?tenant=T067
+T068,NATURELICIOUS.CO,B068,http://localhost:5173/vote?tenant=T068
+T069,DR GRIZZ CLEAN,B069,http://localhost:5173/vote?tenant=T069
+T070,NETASEEC,B070,http://localhost:5173/vote?tenant=T070
+T071,CIKI-NI,B071,http://localhost:5173/vote?tenant=T071
+T072,LASTED MEMORY (LAMORY),B072,http://localhost:5173/vote?tenant=T072
+T073,THE BOX OF SECRET,B073,http://localhost:5173/vote?tenant=T073
+T074,NACHOSAURUS,B074,http://localhost:5173/vote?tenant=T074
+T075,KOMOREBI,B075,http://localhost:5173/vote?tenant=T075
+T076,TERRA SNACK,B076,http://localhost:5173/vote?tenant=T076
+T077,SOKSY,B077,http://localhost:5173/vote?tenant=T077
