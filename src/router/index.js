@@ -3,13 +3,19 @@ import VotePage from '../views/VotePage.vue'
 import GeneratorPage from '../views/GeneratorPage.vue'
 import UploadLogPage from '../views/UploadLogPage.vue'
 import AnomalyResultsPage from '../views/AnomalyResultsPage.vue'
+import LandingPage from '../views/LandingPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/upload-log',
-      redirect: '/upload-log',
+      path: '/',
+      name: 'LandingPage',
+      component: LandingPage,
+    },
+    {
+      path: '/landing',
+      redirect: '/',
     },
     {
       path: '/upload-log',
