@@ -37,3 +37,4 @@ __screenshots__/
 
 .env
 .env.local
+public/qr_booth
