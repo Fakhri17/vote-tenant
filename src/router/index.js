@@ -8,29 +8,29 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      redirect: '/upload-log'
+      path: '/upload-log',
+      redirect: '/upload-log',
     },
     {
       path: '/upload-log',
       name: 'UploadLogPage',
-      component: UploadLogPage
+      component: UploadLogPage,
     },
     {
       path: '/anomaly-results',
       name: 'AnomalyResultsPage',
-      component: AnomalyResultsPage
+      component: AnomalyResultsPage,
     },
     {
       path: '/vote',
       name: 'VotePage',
-      component: VotePage
+      component: VotePage,
     },
     {
       path: '/generate',
       name: 'GeneratorPage',
-      component: GeneratorPage
-    }
+      component: GeneratorPage,
+    },
   ],
 })
 
